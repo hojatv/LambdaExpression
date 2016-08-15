@@ -2,6 +2,8 @@ package com.monster;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
@@ -41,12 +43,14 @@ public class Sample2 {
                 filter(e -> e % 2 == 0).
                 map(e -> e * 2).
                 findFirst());*/
-
+        Predicate<Integer> isGT3 = number -> number > 3;
        /* System.out.println(values.stream().
-                filter(Sample2::isGreaterThan3). // Method references available in java 8
+                filter(isGT3 ). // Method references available in java 8
                 filter(Sample2::isEven).
                 map(Sample2::doubleIt).
                 findFirst());*/
+
+
 
         final Stream<Integer> logic = values.stream().
                 filter(Sample2::isGreaterThan3). // Method references available in java 8
@@ -57,6 +61,18 @@ public class Sample2 {
         // Benefits of lazy evaluation :
             //in traditional way we had to perform more operation. If we have 110 numbers on our list on we loop over them, we have to double all of them and so on ..
             // using laziness, we first filter numbers greater than 3 (means 7  numbers) , then find even numbers and then perform double operation on them.
+
+
+        Function<Integer , Predicate<Integer>> isGreaterThan = pivot ->
+                number -> number > pivot;
+
+        System.out.println("====================");
+        // LESS DUPLICATION :: usig a predicate for greater than
+        final Stream<Integer> temp = values.stream().
+                filter(isGreaterThan.apply(3)). //apply call : apply call is a function of function :: an eager evaluation which returns a predicate
+                filter(Sample2::isEven).
+                map(Sample2::doubleIt);
+        System.out.println(logic.findFirst());
     }
 
     private static int doubleIt(int number) {

@@ -18,6 +18,7 @@ public class Sample3 {
 
         // for pure function we have REFERENTIAL TRANSPARENCY :: compiler can replace the letter with the results of the function
 
+        System.out.println("FASTER THIS TIME!");
         System.out.println(
                 numbers.parallelStream() // <<< when I do sequentially it is slow; using parallel stream makes it much faster! << NO NEED MULTITHREADING EXPLICITLY
                         .mapToInt(Sample3::doubleIt) // map is transformation

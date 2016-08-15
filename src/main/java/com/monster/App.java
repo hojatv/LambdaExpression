@@ -2,6 +2,11 @@ package com.monster;
 
 /**
  * Created by hovaheb on 8/15/2016.
+ * Lambda expression is just a way to pass a block of code to method. That's all it is!
+ */
+
+/**
+ * Factional interface is an interface with only a method inside
  */
 interface Executable {
     int execute(int a , int b );

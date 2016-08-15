@@ -65,6 +65,8 @@ public class App {
         Runner runner = new Runner();
         int c = 100;
         //c = 10;
+
+        //anonymous class in java 7
         runner.run(new Executable() {
             public int execute(int a, int b ) {
                 System.out.println("Hello There!");
@@ -72,6 +74,7 @@ public class App {
             }
         });
         System.out.println("================================================");
+        //Lambda expression in java 8
         runner.run((Executable) (int a , int b) -> {
             System.out.println("This is code passed in a lambda expression");
             System.out.println("Hello There!");
